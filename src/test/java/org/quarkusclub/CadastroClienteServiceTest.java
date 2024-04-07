@@ -40,7 +40,7 @@ class CadastroClienteServiceTest {
             "indicacao"
     );
 
-    ClienteEntity clienteEntity = clienteEntity = new ClienteEntity(
+    ClienteEntity clienteEntity = new ClienteEntity(
             UUID.fromString("1ae0de65-9e0e-4476-9f8c-a41123f9ca3c"),
             "nome",
             "cpf",
@@ -57,7 +57,7 @@ class CadastroClienteServiceTest {
 
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.initMocks(this);
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test

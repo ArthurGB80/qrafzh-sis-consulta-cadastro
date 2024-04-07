@@ -1,24 +1,29 @@
 package org.quarkusclub.controllers;
 
-import jakarta.inject.Inject;
-import jakarta.ws.rs.*;
-import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.Response;
-import org.jboss.resteasy.reactive.RestResponse;
-
-
 import java.util.List;
 import java.util.UUID;
 
 import org.jboss.logging.Logger;
-import org.quarkusclub.models.exceptions.ClienteNaoCadastradoException;
+import org.jboss.resteasy.reactive.RestResponse;
 import org.quarkusclub.dtos.ClienteDTO;
+import org.quarkusclub.models.exceptions.ClienteNaoCadastradoException;
 import org.quarkusclub.models.exceptions.ValidacaoDeDadosException;
 import org.quarkusclub.services.CadastroClienteServiceInterface;
 
+import jakarta.inject.Inject;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.PATCH;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+
 @Path("/v1/clientes")
 public class CadastroClienteResource {
-
 
     @Inject
     private CadastroClienteServiceInterface cadastroClienteService;
@@ -38,7 +43,8 @@ public class CadastroClienteResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{idcliente}")
-    public RestResponse<ClienteDTO> consultaCliente(@PathParam("idcliente") UUID idcliente) throws ClienteNaoCadastradoException {
+    public RestResponse<ClienteDTO> consultaCliente(@PathParam("idcliente") UUID idcliente)
+            throws ClienteNaoCadastradoException {
         ClienteDTO cliente = cadastroClienteService.consultaCliente(idcliente);
         return RestResponse.status(Response.Status.OK, cliente);
     }
@@ -60,7 +66,8 @@ public class CadastroClienteResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/{idcliente}")
-    public RestResponse<ClienteDTO> updateCliente(@PathParam("idcliente") UUID idcliente, ClienteDTO cliente) throws ClienteNaoCadastradoException, ValidacaoDeDadosException {
+    public RestResponse<ClienteDTO> updateCliente(@PathParam("idcliente") UUID idcliente, ClienteDTO cliente)
+            throws ClienteNaoCadastradoException, ValidacaoDeDadosException {
         if (cliente == null) {
             throw new ValidacaoDeDadosException("Cliente não informado", Response.Status.BAD_REQUEST);
         }
@@ -75,7 +82,8 @@ public class CadastroClienteResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/{idcliente}")
-    public RestResponse<ClienteDTO> updateParcialCliente(@PathParam("idcliente") UUID idcliente, ClienteDTO cliente) throws ClienteNaoCadastradoException, ValidacaoDeDadosException {
+    public RestResponse<ClienteDTO> updateParcialCliente(@PathParam("idcliente") UUID idcliente, ClienteDTO cliente)
+            throws ClienteNaoCadastradoException, ValidacaoDeDadosException {
         if (cliente == null) {
             throw new ValidacaoDeDadosException("Cliente não informado", Response.Status.BAD_REQUEST);
         }
@@ -85,7 +93,6 @@ public class CadastroClienteResource {
 
         ClienteDTO updatedCliente = cadastroClienteService.updateParcialCliente(idcliente, cliente);
         return RestResponse.status(RestResponse.Status.OK, updatedCliente);
-
 
     }
 

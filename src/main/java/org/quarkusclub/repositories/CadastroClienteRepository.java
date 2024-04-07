@@ -1,21 +1,20 @@
 package org.quarkusclub.repositories;
 
-import jakarta.enterprise.context.ApplicationScoped;
-import org.quarkusclub.dtos.ClienteDTO;
-import org.quarkusclub.models.ClienteEntity;
-import org.quarkusclub.models.exceptions.ClienteNaoCadastradoException;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import org.quarkusclub.models.ClienteEntity;
+
+import jakarta.enterprise.context.ApplicationScoped;
+
 @ApplicationScoped
 public class CadastroClienteRepository {
 
-    //Nossa persistência em memória
+    // Nossa persistência em memória
     private List<ClienteEntity> clientes = new ArrayList<>();
 
-    public ClienteEntity createCliente(ClienteEntity cliente){
+    public ClienteEntity createCliente(ClienteEntity cliente) {
         cliente.setId(UUID.randomUUID());
         clientes.add(cliente);
         return cliente;
@@ -36,7 +35,7 @@ public class CadastroClienteRepository {
         return cliente;
     }
 
-    public List<ClienteEntity> consultaClientes(){
+    public List<ClienteEntity> consultaClientes() {
         return clientes;
     }
 

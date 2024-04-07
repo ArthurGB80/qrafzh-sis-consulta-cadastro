@@ -1,10 +1,11 @@
 package org.quarkusclub.models.exceptions;
 
+import org.jboss.logging.Logger;
+
 import jakarta.inject.Inject;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.ExceptionMapper;
 import jakarta.ws.rs.ext.Provider;
-import org.jboss.logging.Logger;
 
 @Provider
 public class GlobalExceptionHandler implements ExceptionMapper<Exception> {

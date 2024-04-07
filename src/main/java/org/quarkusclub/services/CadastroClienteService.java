@@ -1,16 +1,16 @@
 package org.quarkusclub.services;
 
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.inject.Inject;
+import java.util.List;
+import java.util.UUID;
+
 import org.quarkusclub.dtos.ClienteDTO;
 import org.quarkusclub.models.ClienteEntity;
 import org.quarkusclub.models.exceptions.ClienteNaoCadastradoException;
 import org.quarkusclub.repositories.CadastroClienteRepository;
 import org.quarkusclub.utils.mappers.ClienteMapper;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 
 @ApplicationScoped
 public class CadastroClienteService implements CadastroClienteServiceInterface {
@@ -29,7 +29,7 @@ public class CadastroClienteService implements CadastroClienteServiceInterface {
     public ClienteDTO updateAllCliente(UUID idcliente, ClienteDTO cliente) throws ClienteNaoCadastradoException {
 
         ClienteEntity clienteEntity = cadastroClienteRepository.consultaCliente(idcliente);
-        if(clienteEntity != null){
+        if (clienteEntity != null) {
             cadastroClienteRepository.updateCliente(ClienteMapper.mapDtoToEntity(cliente));
             return cliente;
         } else {

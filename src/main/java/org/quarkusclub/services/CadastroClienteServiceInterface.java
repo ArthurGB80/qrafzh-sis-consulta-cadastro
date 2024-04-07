@@ -1,10 +1,10 @@
 package org.quarkusclub.services;
 
-import org.quarkusclub.dtos.ClienteDTO;
-import org.quarkusclub.models.exceptions.ClienteNaoCadastradoException;
-
 import java.util.List;
 import java.util.UUID;
+
+import org.quarkusclub.dtos.ClienteDTO;
+import org.quarkusclub.models.exceptions.ClienteNaoCadastradoException;
 
 public interface CadastroClienteServiceInterface {
     ClienteDTO createCliente(ClienteDTO cliente);
